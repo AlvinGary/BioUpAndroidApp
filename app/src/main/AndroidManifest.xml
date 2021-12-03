@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bioup">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BioUp">
+        <activity
+            android:name=".view.ProfileView.EditProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.ProfileView.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.LeaderboardView.LeaderboardActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.GameOverView.GameOverActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.SoalView.SoalActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.PreSoalView.PreSoalActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.MateriView.PilihMateriActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.RegisterView.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.LoginView.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.SplashView.SplashActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

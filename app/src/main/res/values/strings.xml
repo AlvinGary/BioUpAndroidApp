@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BioUp</string>
+    <string name="Daftar"><u>Daftar</u>.</string>
+    <string name="Login"><u>Login</u>.</string>
+    <string name="Character">Nama Karakter</string>
+    <string name="Highscore">Highscore:</string>
+    <string name="Health">x Health</string>
+    <string name="Soal">Soal</string>
+    <string name="ToUnlock">Dapatkan Skor Sebanyak 250 Pada Materi Sebelumnya Untuk Membuka</string>
+</resources>

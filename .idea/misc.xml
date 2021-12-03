@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/drawable/bg_color.xml" value="0.16" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/drawable/ic_wave.xml" value="0.290625" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/drawable/shape_radius_green.xml" value="0.290625" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/drawable/shape_radius_red.xml" value="0.28055555555555556" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/drawable/shape_radius_white.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_edit_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_game_over.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_leaderboard.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_main.xml" value="0.2604166666666667" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_pilih_materi.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_pre_soal.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_profile.xml" value="0.27447916666666666" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_register.xml" value="0.4" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_soal.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/cardview_character.xml" value="0.27447916666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
