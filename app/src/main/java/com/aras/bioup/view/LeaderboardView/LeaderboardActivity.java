@@ -1,4 +1,4 @@
-package com.aras.bioup.LeaderboardView;
+package com.aras.bioup.view.LeaderboardView;
 
 import androidx.appcompat.app.AppCompatActivity;
 

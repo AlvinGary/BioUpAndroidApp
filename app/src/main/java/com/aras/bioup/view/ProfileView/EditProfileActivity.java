@@ -1,4 +1,4 @@
-package com.aras.bioup.GameOverView;
+package com.aras.bioup.view.ProfileView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.aras.bioup.R;
 
-public class GameOverActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_over);
+        setContentView(R.layout.activity_edit_profile);
     }
 }
