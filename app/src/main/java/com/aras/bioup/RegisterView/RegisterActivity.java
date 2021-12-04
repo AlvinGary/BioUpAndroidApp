@@ -1,16 +1,16 @@
-package com.example.bioup.view.SplashView;
+package com.aras.bioup.RegisterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.bioup.R;
+import com.aras.bioup.R;
 
-public class SplashActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_register);
     }
 }

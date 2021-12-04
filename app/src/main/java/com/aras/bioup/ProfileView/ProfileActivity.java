@@ -1,16 +1,16 @@
-package com.example.bioup.view.MateriView;
+package com.aras.bioup.ProfileView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.bioup.R;
+import com.aras.bioup.R;
 
-public class PilihMateriActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pilih_materi);
+        setContentView(R.layout.activity_profile);
     }
 }

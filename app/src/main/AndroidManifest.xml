@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bioup">
+    package="com.aras.bioup">
 
     <application
         android:allowBackup="true"
@@ -10,37 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BioUp">
         <activity
-            android:name=".view.ProfileView.EditProfileActivity"
+            android:name=".ProfileView.EditProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".view.ProfileView.ProfileActivity"
+            android:name=".ProfileView.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".view.LeaderboardView.LeaderboardActivity"
+            android:name=".LeaderboardView.LeaderboardActivity"
             android:exported="true" />
         <activity
-            android:name=".view.GameOverView.GameOverActivity"
+            android:name=".GameOverView.GameOverActivity"
             android:exported="true" />
         <activity
-            android:name=".view.SoalView.SoalActivity"
+            android:name=".SoalView.SoalActivity"
             android:exported="true" />
         <activity
-            android:name=".view.PreSoalView.PreSoalActivity"
+            android:name=".PreSoalView.PreSoalActivity"
             android:exported="true" />
         <activity
-            android:name=".view.MateriView.PilihMateriActivity"
+            android:name=".MateriView.PilihMateriActivity"
             android:exported="true" />
         <activity
-            android:name=".view.RegisterView.RegisterActivity"
+            android:name=".RegisterView.RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".view.LoginView.LoginActivity"
+            android:name=".LoginView.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".view.SplashView.SplashActivity"
+            android:name=".SplashView.SplashActivity"
             android:exported="true" />
         <activity
-            android:name=".view.HomeActivity"
+            android:name="com.aras.bioup.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

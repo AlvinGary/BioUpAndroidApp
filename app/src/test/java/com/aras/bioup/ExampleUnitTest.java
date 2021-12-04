@@ -1,4 +1,4 @@
-package com.example.bioup;
+package com.aras.bioup;
 
 import org.junit.Test;
 

@@ -1,16 +1,17 @@
-package com.example.bioup.view.SoalView;
+package com.aras.bioup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.bioup.R;
+import com.aras.bioup.R;
 
-public class SoalActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_soal);
+        setContentView(R.layout.activity_home);
     }
 }
