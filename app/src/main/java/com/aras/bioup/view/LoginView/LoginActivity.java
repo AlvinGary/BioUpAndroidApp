@@ -1,16 +1,82 @@
 package com.aras.bioup.view.LoginView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aras.bioup.R;
+import com.aras.bioup.helper.SharedPreferenceHelper;
+import com.aras.bioup.view.HomeView.HomeActivity;
+import com.aras.bioup.view.RegisterView.RegisterActivity;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
+    private TextView text_register_login;
+    private TextInputLayout text_input_username_login, text_input_password_login;
+    private Button btn_login_login;
+    private LoginViewModel lvm;
+    private SharedPreferenceHelper helper;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        text_register_login = findViewById(R.id.text_register_login);
+        text_input_username_login = findViewById(R.id.text_input_username_login);
+        text_input_password_login = findViewById(R.id.text_input_password_login);
+        btn_login_login = findViewById(R.id.btn_login_login);
+        text_register_login.setOnClickListener(view -> {
+            startActivity(new Intent(getBaseContext(), RegisterActivity.class));
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        });
+        helper = SharedPreferenceHelper.getInstance(this);
+        lvm = new ViewModelProvider(this).get(LoginViewModel.class);
+        btn_login_login.setOnClickListener(view -> {
+            if (!text_input_username_login.getEditText().getText().toString().isEmpty() &&
+                    !text_input_password_login.getEditText().getText().toString().isEmpty()) {
+                String username = text_input_username_login.getEditText().getText().toString().trim();
+                String password = text_input_password_login.getEditText().getText().toString().trim();
+                lvm.login(username,password).observe(LoginActivity.this, tokenResponse -> {
+                    if (tokenResponse!=null){
+                        helper.saveAccessToken(tokenResponse.getAuthorization());
+                        finish();
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                        Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Ups, gagal masuk", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else{
+                Toast.makeText(LoginActivity.this, "Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }
