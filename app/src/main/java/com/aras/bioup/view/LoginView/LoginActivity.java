@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,10 +18,11 @@ import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.view.HomeView.HomeActivity;
 import com.aras.bioup.view.RegisterView.RegisterActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextView text_register_login;
+    private TextView text_register_login, tv_sb;
     private TextInputLayout text_input_username_login, text_input_password_login;
     private Button btn_login_login;
     private LoginViewModel lvm;
@@ -53,14 +57,14 @@ public class LoginActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                             Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(LoginActivity.this, tokenResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_SHORT).show();
                         }
                     }else{
-                        Toast.makeText(LoginActivity.this, tokenResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }else{
-                Toast.makeText(LoginActivity.this, "Tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
