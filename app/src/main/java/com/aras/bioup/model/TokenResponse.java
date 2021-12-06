@@ -11,12 +11,14 @@ public class TokenResponse implements Parcelable {
     private int expires_in;
     private String access_token;
     private String refresh_token;
+    private String message;
 
     protected TokenResponse(Parcel in) {
         token_type = in.readString();
         expires_in = in.readInt();
         access_token = in.readString();
         refresh_token = in.readString();
+        message = in.readString();
     }
 
     public static final Creator<TokenResponse> CREATOR = new Creator<TokenResponse>() {
@@ -68,7 +70,15 @@ public class TokenResponse implements Parcelable {
         this.refresh_token = refresh_token;
     }
 
-    public String getAuthorization() {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getAuthorization(){
         return this.token_type + " " + this.access_token;
     }
 
@@ -83,5 +93,6 @@ public class TokenResponse implements Parcelable {
         parcel.writeInt(expires_in);
         parcel.writeString(access_token);
         parcel.writeString(refresh_token);
+        parcel.writeString(message);
     }
 }

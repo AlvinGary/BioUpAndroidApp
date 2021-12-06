@@ -46,13 +46,17 @@ public class LoginActivity extends AppCompatActivity {
                 String password = text_input_password_login.getEditText().getText().toString().trim();
                 lvm.login(username,password).observe(LoginActivity.this, tokenResponse -> {
                     if (tokenResponse!=null){
-                        helper.saveAccessToken(tokenResponse.getAuthorization());
-                        finish();
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                        Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
+                        if(tokenResponse.getAccess_token()!=null){
+                            helper.saveAccessToken(tokenResponse.getAuthorization());
+                            finish();
+                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                            Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(LoginActivity.this, tokenResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }else{
-                        Toast.makeText(LoginActivity.this, "Ups, gagal masuk", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, tokenResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }else{
