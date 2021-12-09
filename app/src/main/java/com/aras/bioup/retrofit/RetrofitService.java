@@ -1,6 +1,7 @@
 package com.aras.bioup.retrofit;
 
 import com.aras.bioup.helper.Const;
+import com.aras.bioup.model.Character;
 import com.aras.bioup.model.RegisterResponse;
 import com.aras.bioup.model.TokenResponse;
 import com.google.gson.JsonObject;
@@ -48,8 +49,8 @@ public class RetrofitService {
         return service;
     }
 
-    public Call<TokenResponse> login(String username, String password) {
-        return api.login(username, password);
+    public Call<TokenResponse> login(String email, String password) {
+        return api.login(email, password);
     }
 
     public Call<RegisterResponse> register(String username, String email, String password
@@ -60,4 +61,6 @@ public class RetrofitService {
     public Call<JsonObject> logout() {
         return api.logout();
     }
+
+    public Call<Character> getCharacters(){return api.getCharacters(); }
 }

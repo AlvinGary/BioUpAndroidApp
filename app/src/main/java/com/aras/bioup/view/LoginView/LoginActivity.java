@@ -46,9 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_login_login.setOnClickListener(view -> {
             if (!text_input_username_login.getEditText().getText().toString().isEmpty() &&
                     !text_input_password_login.getEditText().getText().toString().isEmpty()) {
-                String username = text_input_username_login.getEditText().getText().toString().trim();
+                String email = text_input_username_login.getEditText().getText().toString().trim();
                 String password = text_input_password_login.getEditText().getText().toString().trim();
-                lvm.login(username,password).observe(LoginActivity.this, tokenResponse -> {
+                lvm.login(email,password).observe(LoginActivity.this, tokenResponse -> {
                     if (tokenResponse!=null){
                         if(tokenResponse.getAccess_token()!=null){
                             helper.saveAccessToken(tokenResponse.getAuthorization());

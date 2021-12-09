@@ -36,32 +36,32 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_jumlah_soal"
+                android:id="@+id/text_level_char"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="0"
+                android:text="Total Level :"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/text_nama_char"
                 app:layout_constraintTop_toBottomOf="@+id/text_nama_char" />
 
             <TextView
-                android:id="@+id/text_soal"
+                android:id="@+id/text_jumlah_level_char"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Soal"
+                android:text="3"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/text_jumlah_soal"
-                app:layout_constraintTop_toTopOf="@+id/text_jumlah_soal" />
+                app:layout_constraintStart_toEndOf="@+id/text_level_char"
+                app:layout_constraintTop_toTopOf="@+id/text_level_char" />
 
             <ImageView
                 android:id="@+id/img_health_char"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/text_jumlah_soal"
-                app:layout_constraintTop_toBottomOf="@+id/text_jumlah_soal"
+                app:layout_constraintStart_toStartOf="@+id/text_level_char"
+                app:layout_constraintTop_toBottomOf="@+id/text_level_char"
                 app:srcCompat="@drawable/health" />
 
             <TextView
