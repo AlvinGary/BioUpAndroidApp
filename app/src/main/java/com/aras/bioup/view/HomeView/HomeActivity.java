@@ -15,7 +15,7 @@ import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.view.LoginView.LoginActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private Button btn_keluar_home;
+    private Button btn_keluar_home, btn_mulai_home, btn_skor_home, btn_profil_home;
     private SharedPreferenceHelper helper;
     private HomeViewModel hvm;
     private Boolean doubleBackToExitPressedOnce=false;
@@ -25,9 +25,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         btn_keluar_home= findViewById(R.id.btn_keluar_home);
+        btn_mulai_home = findViewById(R.id.btn_mulai_home);
+        btn_skor_home = findViewById(R.id.btn_papan_skor_home);
+        btn_profil_home = findViewById(R.id.btn_profil_home);
+
         helper = SharedPreferenceHelper.getInstance(this);
         hvm = new ViewModelProvider(this).get(HomeViewModel.class);
         hvm.init(helper.getAccessToken());
+
         btn_keluar_home.setOnClickListener(view -> {
             if (view.getId() == R.id.btn_keluar_home){
                 hvm.logout().observe(this, s -> {
@@ -41,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
                 });
             }
         });
+
+
     }
     @Override
     public void onBackPressed() {
