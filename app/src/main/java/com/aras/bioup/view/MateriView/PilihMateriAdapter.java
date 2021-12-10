@@ -1,6 +1,7 @@
 package com.aras.bioup.view.MateriView;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.aras.bioup.R;
 import com.aras.bioup.helper.Const;
 import com.aras.bioup.model.Character;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -43,22 +45,29 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     public void onBindViewHolder(@NonNull PilihMateriAdapter.CardViewViewHolder holder, int position) {
         final Character.Characters results = getCharactersList().get(position);
         holder.char_nama.setText(results.getNama());
-        holder.char_jumlah_health.setText(results.getHealthPoint());
+        holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
 
-//        Glide.with(context)
-//                .load(Const.IMG_URL + results.getCharimgpath())
-//                .into(holder.img_char);
+        Glide.with(context)
+                .load(Const.IMG_URL + results.getCharimgpath())
+                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                .into(holder.img_char);
 
+//        holder.cardView.setOnClickListener(view -> {
+//            Bundle bundle = new Bundle();
+//            bundle.putString("charID", String.valueOf(results.getCharID()));
+//
+//        });
     }
 
     @Override
     public int getItemCount() {
+//        return null!=charactersList?charactersList.size():0;
         return charactersList.size();
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         TextView char_nama, char_jumlah_health, char_jumlah_score;
-        ImageView img_char;
+        ImageView img_char, img_back_icon;
         CardView cardView;
 
         public CardViewViewHolder(@NonNull View itemView) {
@@ -68,6 +77,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             char_jumlah_score = itemView.findViewById(R.id.text_jumlah_score_char);
             img_char = itemView.findViewById(R.id.img_char);
             cardView = itemView.findViewById(R.id.cardview_char);
+            img_back_icon = itemView.findViewById(R.id.img_back_pilih_materi);
         }
     }
 }

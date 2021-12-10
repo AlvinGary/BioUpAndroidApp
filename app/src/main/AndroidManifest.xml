@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/bioup_logo_transparent"
         android:supportsRtl="true"
         android:theme="@style/Theme.BioUp"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".view.LevelView.LevelActivity"
             android:exported="false" />

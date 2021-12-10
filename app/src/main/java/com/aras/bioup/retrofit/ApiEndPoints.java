@@ -1,6 +1,7 @@
 package com.aras.bioup.retrofit;
 
 import com.aras.bioup.model.Character;
+import com.aras.bioup.model.Level;
 import com.aras.bioup.model.RegisterResponse;
 import com.aras.bioup.model.TokenResponse;
 import com.google.gson.JsonObject;
@@ -28,4 +29,7 @@ public interface ApiEndPoints {
 
     @GET("character")
     Call<Character> getCharacters();
+
+    @GET("character/{charID}/level")
+    Call<Level> getLevels();
 }

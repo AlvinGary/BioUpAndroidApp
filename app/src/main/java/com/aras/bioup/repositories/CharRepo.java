@@ -45,6 +45,7 @@ public class CharRepo {
                 Log.d(TAG, "onResponse: "+response.code());
                 if(response.isSuccessful()){
                     if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+response.body());
                         listCharacters.postValue(response.body());
                     }
                 }
