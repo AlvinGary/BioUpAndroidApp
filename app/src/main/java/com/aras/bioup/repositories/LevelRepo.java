@@ -37,10 +37,10 @@ public class LevelRepo {
         }
     }
 
-    public MutableLiveData<Level> getLevels(){
+    public MutableLiveData<Level> getLevels(String charID){
         final MutableLiveData<Level> listLevels = new MutableLiveData<>();
 
-        apiService.getLevels().enqueue(new Callback<Level>() {
+        apiService.getLevels(charID).enqueue(new Callback<Level>() {
             @Override
             public void onResponse(Call<Level> call, Response<Level> response) {
                 Log.d(TAG, "onResponse: "+response.code());

@@ -26,8 +26,8 @@ public class LevelViewModel extends AndroidViewModel {
 
     //Begin of View Model to get Level by CharID
     private MutableLiveData<Level> resultLevels = new MutableLiveData<>();
-    public void getLevels(){
-        resultLevels = levelRepo.getLevels();
+    public void getLevels(String charID){
+        resultLevels = levelRepo.getLevels(charID);
     }
     public LiveData<Level> getResultLevels(){
         return  resultLevels;

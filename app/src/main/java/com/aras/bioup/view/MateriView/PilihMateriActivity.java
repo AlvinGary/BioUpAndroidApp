@@ -33,6 +33,8 @@ public class PilihMateriActivity extends AppCompatActivity {
         charViewModel.init(helper.getAccessToken());
         charViewModel.getCharacters();
         charViewModel.getResultCharacters().observe(PilihMateriActivity.this, showCharacters);
+
+
     }
 
     List<Character.Characters> results = new ArrayList<>();

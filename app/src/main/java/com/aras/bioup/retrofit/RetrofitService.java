@@ -65,5 +65,5 @@ public class RetrofitService {
 
     public Call<Character> getCharacters(){return api.getCharacters(); }
 
-    public Call<Level> getLevels(){return api.getLevels(); }
+    public Call<Level> getLevels(String charID){return api.getLevels(charID); }
 }

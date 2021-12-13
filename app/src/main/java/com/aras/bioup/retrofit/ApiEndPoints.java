@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiEndPoints {
     @POST("login")
@@ -30,6 +31,11 @@ public interface ApiEndPoints {
     @GET("character")
     Call<Character> getCharacters();
 
-    @GET("character/{charID}/level")
-    Call<Level> getLevels();
+    @GET("character/{charID}")
+    Call<Level> getLevels(
+            @Path("charID") String charID
+    );
+
+//    @GET("character/{charID}/{levelID}")
+
 }

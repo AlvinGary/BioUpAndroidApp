@@ -1,9 +1,11 @@
 package com.aras.bioup.view.LevelView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aras.bioup.R;
 import com.aras.bioup.model.Level;
+import com.aras.bioup.view.HomeView.HomeActivity;
 
 import java.util.List;
 
@@ -37,14 +40,17 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
     @Override
     public void onBindViewHolder(@NonNull LevelAdapter.CardViewViewHolder holder, int position) {
         final Level.Levels results = getLevelsList().get(position);
-        for (int i=0; i<getItemCount(); i++){
-            if(i == 0){
-                holder.level_name.setText("Easy");
-            } else if(i == 1){
-                holder.level_name.setText("Medium");
-            } else if(i == 2){
-                holder.level_name.setText("Hard");
-            }
+        if(position == 0){
+            holder.level_name.setText("Easy");
+        }
+        if(position == 1){
+            holder.level_name.setText("Medium");
+        }
+        if(position == 2){
+            holder.level_name.setText("Hard");
+        }
+        if(results.getLevelID() == 16){
+            holder.level_name.setText("Ujian Akhir");
         }
     }
 
@@ -55,12 +61,15 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         TextView level_name, level_score;
+        ImageView back_icon;
         CardView cardView;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             level_name = itemView.findViewById(R.id.text_level);
             level_score = itemView.findViewById(R.id.text_jumlah_score_level);
+            back_icon = itemView.findViewById(R.id.img_back_level);
+            cardView = itemView.findViewById(R.id.cardview_level);
         }
     }
 }
