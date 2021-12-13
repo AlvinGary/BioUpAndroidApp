@@ -48,15 +48,16 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
         holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
 
         Glide.with(context)
-                .load(Const.IMG_URL + results.getCharimgpath())
-                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
+                .load(Const.IMG_URL + results.getCharimgpath_png())
                 .into(holder.img_char);
 
-//        holder.cardView.setOnClickListener(view -> {
+
+
+        holder.cardView.setOnClickListener(view -> {
 //            Bundle bundle = new Bundle();
 //            bundle.putString("charID", String.valueOf(results.getCharID()));
-//
-//        });
+
+        });
     }
 
     @Override

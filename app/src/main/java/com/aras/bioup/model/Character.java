@@ -54,6 +54,7 @@ public class Character implements Parcelable {
         private String nama;
         private String charimgpath;
         private int reqscore;
+        private String charimgpath_png;
 
         public static Characters objectFromData(String str) {
 
@@ -98,6 +99,14 @@ public class Character implements Parcelable {
 
         public void setReqscore(int reqscore) {
             this.reqscore = reqscore;
+        }
+
+        public String getCharimgpath_png() {
+            return charimgpath_png;
+        }
+
+        public void setCharimgpath_png(String charimgpath_png) {
+            this.charimgpath_png = charimgpath_png;
         }
     }
 }
