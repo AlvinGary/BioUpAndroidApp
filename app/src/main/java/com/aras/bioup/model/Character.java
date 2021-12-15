@@ -1,13 +1,32 @@
 package com.aras.bioup.model;
 
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 
 import java.util.List;
 
-public class Character {
+public class Character implements Parcelable {
 
     private List<Userchara> userchara;
     private List<Allchara> allchara;
+
+    protected Character(Parcel in) {
+    }
+
+    public static final Creator<Character> CREATOR = new Creator<Character>() {
+        @Override
+        public Character createFromParcel(Parcel in) {
+            return new Character(in);
+        }
+
+        @Override
+        public Character[] newArray(int size) {
+            return new Character[size];
+        }
+    };
 
     public static Character objectFromData(String str) {
 
@@ -28,6 +47,15 @@ public class Character {
 
     public void setAllchara(List<Allchara> allchara) {
         this.allchara = allchara;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
     }
 
     public static class Userchara {
