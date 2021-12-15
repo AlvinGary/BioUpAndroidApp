@@ -62,31 +62,29 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     public void onBindViewHolder(@NonNull PilihMateriAdapter.CardViewViewHolder holder, int position) {
         final Character.Allchara results = getAllcharaList().get(position);
         if (position < usercharaList.size()) { //2
-            if (results.getId() == results.getId()) {
-                holder.char_nama.setText(results.getNama());
-                holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
+            holder.char_nama.setText(results.getNama());
+            holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
 
-                if (results.getId() == 6) {
-                    holder.char_jumlah_level.setText("1");
-                } else {
-                    holder.char_jumlah_level.setText("3");
-                }
-
-                Glide.with(context)
-                        .load(Const.IMG_URL + results.getCharimgpath_png())
-                        .into(holder.img_char);
-
-                holder.cardView.setOnClickListener(view -> {
-                    Intent intent = new Intent(context, LevelActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("charID", String.valueOf(results.getId()));
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                });
+            if (results.getId() == 6) {
+                holder.char_jumlah_level.setText("1");
+            } else {
+                holder.char_jumlah_level.setText("3");
             }
+
+            Glide.with(context)
+                    .load(Const.IMG_URL + results.getCharimgpath_png())
+                    .into(holder.img_char);
+
+            holder.cardView.setOnClickListener(view -> {
+                Intent intent = new Intent(context, LevelActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("charID", String.valueOf(results.getId()));
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            });
         } else {
             holder.cardView.setCardBackgroundColor(Color.BLACK);
-            holder.char_nama.setText("Unlock at: "+String.valueOf(results.getReqscore()));
+            holder.char_nama.setText("Unlock at: " + String.valueOf(results.getReqscore()));
             holder.char_nama.setTextColor(Color.WHITE);
             holder.img_health_char.setVisibility(View.GONE);
         }
@@ -99,7 +97,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
         TextView char_nama, char_jumlah_health, char_jumlah_score, char_jumlah_level;
-        ImageView img_char, img_back_icon,img_health_char;
+        ImageView img_char, img_back_icon, img_health_char;
         CardView cardView;
 
         public CardViewViewHolder(@NonNull View itemView) {
