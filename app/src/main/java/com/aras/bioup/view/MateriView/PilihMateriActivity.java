@@ -6,11 +6,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.model.Character;
+import com.aras.bioup.view.HomeView.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +25,27 @@ public class PilihMateriActivity extends AppCompatActivity {
     private PilihMateriAdapter charAdapter;
     private RecyclerView recyclerView;
     private SharedPreferenceHelper helper;
+    private ImageView img_back_pilih_materi;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_materi);
+
+        img_back_pilih_materi = findViewById(R.id.img_back_pilih_materi);
+        img_back_pilih_materi.setOnClickListener(view -> {
+            startActivity(new Intent(PilihMateriActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        });
 
         recyclerView = findViewById(R.id.rv_character);
         helper = SharedPreferenceHelper.getInstance(PilihMateriActivity.this);

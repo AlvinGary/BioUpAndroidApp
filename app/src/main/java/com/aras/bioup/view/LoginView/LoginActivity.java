@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         text_input_password_login = findViewById(R.id.text_input_password_login);
         btn_login_login = findViewById(R.id.btn_login_login);
         text_register_login.setOnClickListener(view -> {
-            startActivity(new Intent(getBaseContext(), RegisterActivity.class));
+            startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://www.google.com")));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         helper = SharedPreferenceHelper.getInstance(this);

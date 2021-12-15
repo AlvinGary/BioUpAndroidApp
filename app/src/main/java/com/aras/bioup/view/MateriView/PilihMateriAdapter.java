@@ -1,5 +1,6 @@
 package com.aras.bioup.view.MateriView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -19,8 +21,10 @@ import com.aras.bioup.helper.Const;
 import com.aras.bioup.model.Character;
 import com.aras.bioup.view.HomeView.HomeActivity;
 import com.aras.bioup.view.LevelView.LevelActivity;
+import com.aras.bioup.view.LoginView.LoginActivity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -28,7 +32,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     private Context context;
     private List<Character.Allchara> allcharaList;
     private List<Character.Userchara> usercharaList;
-
+    private Activity mActivity;
 
     public PilihMateriAdapter(Context context) {
         this.context = context;
@@ -80,13 +84,22 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
                 Bundle bundle = new Bundle();
                 bundle.putString("charID", String.valueOf(results.getId()));
                 intent.putExtras(bundle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
+                mActivity = (Activity) holder.cardView.getContext();
+                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                ((Activity)context).finish();
             });
         } else {
             holder.cardView.setCardBackgroundColor(Color.BLACK);
-            holder.char_nama.setText("Unlock at: " + String.valueOf(results.getReqscore()));
-            holder.char_nama.setTextColor(Color.WHITE);
+            holder.char_reqscore.setVisibility(View.VISIBLE);
+            holder.char_reqscore.setText("Dibutuhkan total score " + String.valueOf(results.getReqscore()) + " score");
+            holder.char_reqscore.setTextColor(Color.WHITE);
+            holder.img_gembok.setVisibility(View.VISIBLE);
             holder.img_health_char.setVisibility(View.GONE);
+            holder.cardView.setOnClickListener(view -> {
+                Snackbar.make(view, "Ups! Kamu tidak memenuhi syarat untuk membuka karakter ini!", Snackbar.LENGTH_SHORT).show();
+            });
         }
     }
 
@@ -96,8 +109,8 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
-        TextView char_nama, char_jumlah_health, char_jumlah_score, char_jumlah_level;
-        ImageView img_char, img_back_icon, img_health_char;
+        TextView char_nama, char_jumlah_health, char_jumlah_score, char_jumlah_level, char_reqscore;
+        ImageView img_char, img_health_char, img_gembok;
         CardView cardView;
 
         public CardViewViewHolder(@NonNull View itemView) {
@@ -109,7 +122,8 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             img_char = itemView.findViewById(R.id.img_char);
             img_health_char = itemView.findViewById(R.id.img_health_char);
             cardView = itemView.findViewById(R.id.cardview_char);
-            img_back_icon = itemView.findViewById(R.id.img_back_pilih_materi);
+            char_reqscore = itemView.findViewById(R.id.text_reqscore);
+            img_gembok = itemView.findViewById(R.id.img_gembok);
         }
     }
 }

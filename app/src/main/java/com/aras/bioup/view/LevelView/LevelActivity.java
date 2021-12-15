@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.aras.bioup.R;
@@ -27,11 +28,28 @@ public class LevelActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SharedPreferenceHelper helper;
     private String charID;
+    private ImageView img_back_level;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, PilihMateriActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+
+        img_back_level = findViewById(R.id.img_back_level);
+        img_back_level.setOnClickListener(view -> {
+            startActivity(new Intent(LevelActivity.this, PilihMateriActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        });
+
         Bundle bundle = getIntent().getExtras();
         charID = bundle.getString("charID");
 
