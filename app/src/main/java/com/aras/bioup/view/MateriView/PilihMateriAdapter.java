@@ -25,16 +25,16 @@ import java.util.List;
 
 public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.CardViewViewHolder> {
     private Context context;
-    private List<Character.Characters> charactersList;
+    private List<Character.Allchara> allcharaList;
 
     public PilihMateriAdapter(Context context) {
         this.context = context;
     }
-    public List<Character.Characters> getCharactersList() {
-        return charactersList;
+    public List<Character.Allchara> getAllcharaList() {
+        return allcharaList;
     }
-    public void setCharactersList(List<Character.Characters> charactersList){
-        this.charactersList = charactersList;
+    public void setCharactersList(List<Character.Allchara> allcharaList){
+        this.allcharaList = allcharaList;
     }
 
     @NonNull
@@ -46,11 +46,11 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PilihMateriAdapter.CardViewViewHolder holder, int position) {
-        final Character.Characters results = getCharactersList().get(position);
+        final Character.Allchara results = getAllcharaList().get(position);
         holder.char_nama.setText(results.getNama());
         holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
 
-        if(results.getCharID() == 6){
+        if(results.getId() == 6){
             holder.char_jumlah_level.setText("1");
         }else{
             holder.char_jumlah_level.setText("3");
@@ -64,7 +64,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             Intent intent = new Intent(context, LevelActivity.class);
 //            intent.putExtra("charID", ""+results.getCharID());
             Bundle bundle = new Bundle();
-            bundle.putString("charID", String.valueOf(results.getCharID()));
+            bundle.putString("charID", String.valueOf(results.getId()));
             intent.putExtras(bundle);
             context.startActivity(intent);
         });
@@ -73,7 +73,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     @Override
     public int getItemCount() {
 //        return null!=charactersList?charactersList.size():0;
-        return charactersList.size();
+        return allcharaList.size();
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {

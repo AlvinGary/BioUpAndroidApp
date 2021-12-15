@@ -36,6 +36,6 @@ public interface ApiEndPoints {
             @Path("charID") String charID
     );
 
-//    @GET("character/{charID}/{levelID}")
+//    @GET("level/{levelID}")
 
 }

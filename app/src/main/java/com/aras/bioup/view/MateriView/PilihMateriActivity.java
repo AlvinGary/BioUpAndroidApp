@@ -37,13 +37,13 @@ public class PilihMateriActivity extends AppCompatActivity {
 
     }
 
-    List<Character.Characters> results = new ArrayList<>();
+    List<Character.Allchara> results = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
 
     private Observer<Character> showCharacters = new Observer<Character>() {
         @Override
         public void onChanged(Character character) {
-            results = character.getCharacters();
+            results = character.getAllchara();
             linearLayoutManager = new LinearLayoutManager(PilihMateriActivity.this);
             recyclerView.setLayoutManager(linearLayoutManager);
             charAdapter = new PilihMateriAdapter(PilihMateriActivity.this);
