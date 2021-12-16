@@ -65,6 +65,7 @@ public class Character implements Parcelable {
         private String charimgpath;
         private int reqscore;
         private String charimgpath_png;
+        private Pivot pivot;
 
         public static Userchara objectFromData(String str) {
 
@@ -117,6 +118,49 @@ public class Character implements Parcelable {
 
         public void setCharimgpath_png(String charimgpath_png) {
             this.charimgpath_png = charimgpath_png;
+        }
+
+        public Pivot getPivot() {
+            return pivot;
+        }
+
+        public void setPivot(Pivot pivot) {
+            this.pivot = pivot;
+        }
+
+        public static class Pivot {
+            private int user_id;
+            private int character_id;
+            private int score;
+
+            public static Pivot objectFromData(String str) {
+
+                return new Gson().fromJson(str, Pivot.class);
+            }
+
+            public int getUser_id() {
+                return user_id;
+            }
+
+            public void setUser_id(int user_id) {
+                this.user_id = user_id;
+            }
+
+            public int getCharacter_id() {
+                return character_id;
+            }
+
+            public void setCharacter_id(int character_id) {
+                this.character_id = character_id;
+            }
+
+            public int getScore() {
+                return score;
+            }
+
+            public void setScore(int score) {
+                this.score = score;
+            }
         }
     }
 

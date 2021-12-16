@@ -65,7 +65,35 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     @Override
     public void onBindViewHolder(@NonNull PilihMateriAdapter.CardViewViewHolder holder, int position) {
         final Character.Allchara results = getAllcharaList().get(position);
+        int i = 0;
         if (position < usercharaList.size()) { //2
+            i = i+ usercharaList.get(position).getPivot().getScore();
+            holder.char_nama.setText(results.getNama());
+            holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
+            holder.text_jumlah_score_char.setText(String.valueOf(usercharaList.get(position).getPivot().getScore()));
+
+            if (results.getId() == 6) {
+                holder.char_jumlah_level.setText("1");
+            } else {
+                holder.char_jumlah_level.setText("3");
+            }
+
+            Glide.with(context)
+                    .load(Const.IMG_URL + results.getCharimgpath_png())
+                    .into(holder.img_char);
+
+            holder.cardView.setOnClickListener(view -> {
+                Intent intent = new Intent(context, LevelActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("charID", String.valueOf(results.getId()));
+                intent.putExtras(bundle);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intent);
+                mActivity = (Activity) holder.cardView.getContext();
+                mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                ((Activity) context).finish();
+            });
+        }else if (i > results.getReqscore()) {
             holder.char_nama.setText(results.getNama());
             holder.char_jumlah_health.setText(String.valueOf(results.getHealthPoint()));
 
@@ -88,9 +116,9 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
                 context.startActivity(intent);
                 mActivity = (Activity) holder.cardView.getContext();
                 mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                ((Activity)context).finish();
+                ((Activity) context).finish();
             });
-        } else {
+        } else if (i < results.getReqscore()) {
             holder.cardView.setCardBackgroundColor(Color.BLACK);
             holder.char_reqscore.setVisibility(View.VISIBLE);
             holder.char_reqscore.setText("Dibutuhkan total score " + String.valueOf(results.getReqscore()) + " score");
@@ -109,7 +137,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder {
-        TextView char_nama, char_jumlah_health, char_jumlah_score, char_jumlah_level, char_reqscore;
+        TextView char_nama, char_jumlah_health, char_jumlah_score, char_jumlah_level, char_reqscore, text_jumlah_score_char;
         ImageView img_char, img_health_char, img_gembok;
         CardView cardView;
 
@@ -124,6 +152,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             cardView = itemView.findViewById(R.id.cardview_char);
             char_reqscore = itemView.findViewById(R.id.text_reqscore);
             img_gembok = itemView.findViewById(R.id.img_gembok);
+            text_jumlah_score_char = itemView.findViewById(R.id.text_jumlah_score_char);
         }
     }
 }
