@@ -3,6 +3,7 @@ package com.aras.bioup.retrofit;
 import com.aras.bioup.model.Character;
 import com.aras.bioup.model.Level;
 import com.aras.bioup.model.RegisterResponse;
+import com.aras.bioup.model.Soal;
 import com.aras.bioup.model.TokenResponse;
 import com.google.gson.JsonObject;
 
@@ -36,6 +37,9 @@ public interface ApiEndPoints {
             @Path("charID") String charID
     );
 
-//    @GET("level/{levelID}")
+    @GET("level/{levelID}")
+    Call<Soal> getSoals(
+            @Path("levelID") String levelID
+    );
 
 }

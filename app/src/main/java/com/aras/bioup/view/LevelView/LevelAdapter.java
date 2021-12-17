@@ -2,6 +2,7 @@ package com.aras.bioup.view.LevelView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aras.bioup.R;
 import com.aras.bioup.model.Level;
 import com.aras.bioup.view.HomeView.HomeActivity;
+import com.aras.bioup.view.PreSoalView.PreSoalActivity;
+import com.aras.bioup.view.SoalView.SoalActivity;
 
 import java.util.List;
 
@@ -52,6 +55,14 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
         if(results.getId() == 16){
             holder.level_name.setText("Ujian Akhir");
         }
+
+        holder.cardView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, SoalActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("charID", String.valueOf(results.getCharID()));
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+        });
     }
 
     @Override

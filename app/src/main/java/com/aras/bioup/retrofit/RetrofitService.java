@@ -4,6 +4,7 @@ import com.aras.bioup.helper.Const;
 import com.aras.bioup.model.Character;
 import com.aras.bioup.model.Level;
 import com.aras.bioup.model.RegisterResponse;
+import com.aras.bioup.model.Soal;
 import com.aras.bioup.model.TokenResponse;
 import com.google.gson.JsonObject;
 
@@ -66,4 +67,6 @@ public class RetrofitService {
     public Call<Character> getCharacters(){return api.getCharacters(); }
 
     public Call<Level> getLevels(String charID){return api.getLevels(charID); }
+
+    public Call<Soal> getSoals(String levelID){ return api.getSoals(levelID); }
 }
