@@ -31,7 +31,7 @@ public class PilihMateriActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        super.finish();
+        finish();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
     }
 

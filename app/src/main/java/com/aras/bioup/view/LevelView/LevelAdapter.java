@@ -49,7 +49,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
         if(position == 2){
             holder.level_name.setText("Hard");
         }
-        if(results.getLevelID() == 16){
+        if(results.getId() == 16){
             holder.level_name.setText("Ujian Akhir");
         }
     }
