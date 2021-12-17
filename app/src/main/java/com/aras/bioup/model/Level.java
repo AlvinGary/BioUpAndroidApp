@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Level implements Parcelable {
 
-
     private List<Levels> levels;
 
     protected Level(Parcel in) {
@@ -84,7 +83,7 @@ public class Level implements Parcelable {
         }
 
         public static class Pivot {
-            private int character_id;
+            private int user_id;
             private int level_id;
             private int score;
 
@@ -93,12 +92,12 @@ public class Level implements Parcelable {
                 return new Gson().fromJson(str, Pivot.class);
             }
 
-            public int getCharacter_id() {
-                return character_id;
+            public int getUser_id() {
+                return user_id;
             }
 
-            public void setCharacter_id(int character_id) {
-                this.character_id = character_id;
+            public void setUser_id(int user_id) {
+                this.user_id = user_id;
             }
 
             public int getLevel_id() {

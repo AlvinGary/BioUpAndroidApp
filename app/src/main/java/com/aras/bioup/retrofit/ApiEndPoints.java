@@ -5,6 +5,8 @@ import com.aras.bioup.model.Level;
 import com.aras.bioup.model.RegisterResponse;
 import com.aras.bioup.model.Soal;
 import com.aras.bioup.model.TokenResponse;
+import com.aras.bioup.model.UpscoreResponse;
+import com.aras.bioup.repositories.ScoreRepo;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -13,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiEndPoints {
     @POST("login")
@@ -40,6 +43,12 @@ public interface ApiEndPoints {
     @GET("level/{levelID}")
     Call<Soal> getSoals(
             @Path("levelID") String levelID
+    );
+
+    @POST("level/upscore")
+    @FormUrlEncoded
+    Call<UpscoreResponse> upscore(
+            @Field("levelID") String levelID, @Field("score") int score
     );
 
 }

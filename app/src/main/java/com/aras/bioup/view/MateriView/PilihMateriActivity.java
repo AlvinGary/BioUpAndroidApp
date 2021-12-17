@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,25 +27,27 @@ public class PilihMateriActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private SharedPreferenceHelper helper;
     private ImageView img_back_pilih_materi;
+    private ProgressDialog dialog;
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         finish();
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih_materi);
-
+        dialog = ProgressDialog.show(PilihMateriActivity.this, "", "Loading. Please wait...", true);
+        dialog.show();
         img_back_pilih_materi = findViewById(R.id.img_back_pilih_materi);
         img_back_pilih_materi.setOnClickListener(view -> {
             startActivity(new Intent(PilihMateriActivity.this, HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
-            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
 
         recyclerView = findViewById(R.id.rv_character);
@@ -61,19 +64,17 @@ public class PilihMateriActivity extends AppCompatActivity {
     List<Character.Userchara> results1 = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
 
-    private Observer<Character> showCharacters = new Observer<Character>() {
-        @Override
-        public void onChanged(Character character) {
-            results = character.getAllchara();
-            results1 = character.getUserchara();
-            linearLayoutManager = new LinearLayoutManager(PilihMateriActivity.this);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            charAdapter = new PilihMateriAdapter(PilihMateriActivity.this);
-            charAdapter.setCharactersList(results);
-            charAdapter.setUserCharaList(results1);
-            recyclerView.setAdapter(charAdapter);
+    private Observer<Character> showCharacters = character -> {
+        results = character.getAllchara();
+        results1 = character.getUserchara();
+        linearLayoutManager = new LinearLayoutManager(PilihMateriActivity.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        charAdapter = new PilihMateriAdapter(PilihMateriActivity.this);
+        charAdapter.setCharactersList(results);
+        charAdapter.setUserCharaList(results1);
+        recyclerView.setAdapter(charAdapter);
+        if (results != null) {
+            dialog.dismiss();
         }
     };
-
-
 }

@@ -1,5 +1,6 @@
 package com.aras.bioup.view.LevelView;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import java.util.List;
 public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewViewHolder> {
     private Context context;
     private List<Level.Levels> levelsList;
+    private Activity mActivity;
 
     public LevelAdapter(Context context){
         this.context = context;
@@ -44,24 +46,30 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
     public void onBindViewHolder(@NonNull LevelAdapter.CardViewViewHolder holder, int position) {
         final Level.Levels results = getLevelsList().get(position);
         if(position == 0){
-            holder.level_name.setText("Easy");
+            holder.level_name.setText("Mudah");
         }
         if(position == 1){
-            holder.level_name.setText("Medium");
+            holder.level_name.setText("Sedang");
         }
         if(position == 2){
-            holder.level_name.setText("Hard");
+            holder.level_name.setText("Susah");
         }
         if(results.getId() == 16){
             holder.level_name.setText("Ujian Akhir");
         }
 
+        holder.level_score.setText(String.valueOf(results.getPivot().getScore()));
+
         holder.cardView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, SoalActivity.class);
+            Intent intent = new Intent(context, PreSoalActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("levelID", String.valueOf(results.getId()));
+            bundle.putString("charID", String.valueOf(results.getCharacter_id()));
             intent.putExtras(bundle);
             context.startActivity(intent);
+            mActivity = (Activity) holder.cardView.getContext();
+            mActivity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            ((Activity) context).finish();
         });
     }
 

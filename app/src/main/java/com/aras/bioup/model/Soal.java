@@ -9,18 +9,9 @@ import java.util.List;
 
 public class Soal implements Parcelable {
 
-    private List<Level> level;
+    private List<Soals> soals;
 
     protected Soal(Parcel in) {
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<Soal> CREATOR = new Creator<Soal>() {
@@ -40,23 +31,33 @@ public class Soal implements Parcelable {
         return new Gson().fromJson(str, Soal.class);
     }
 
-    public List<Level> getLevel() {
-        return level;
+    public List<Soals> getSoals() {
+        return soals;
     }
 
-    public void setLevel(List<Level> level) {
-        this.level = level;
+    public void setSoals(List<Soals> soals) {
+        this.soals = soals;
     }
 
-    public static class Level {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+    }
+
+    public static class Soals {
         private int id;
         private String pertanyaan;
         private String imgpath;
         private String jawaban;
+        private Pivot pivot;
 
-        public static Level objectFromData(String str) {
+        public static Soals objectFromData(String str) {
 
-            return new Gson().fromJson(str, Level.class);
+            return new Gson().fromJson(str, Soals.class);
         }
 
         public int getId() {
@@ -89,6 +90,40 @@ public class Soal implements Parcelable {
 
         public void setJawaban(String jawaban) {
             this.jawaban = jawaban;
+        }
+
+        public Pivot getPivot() {
+            return pivot;
+        }
+
+        public void setPivot(Pivot pivot) {
+            this.pivot = pivot;
+        }
+
+        public static class Pivot {
+            private int level_id;
+            private int soal_id;
+
+            public static Pivot objectFromData(String str) {
+
+                return new Gson().fromJson(str, Pivot.class);
+            }
+
+            public int getLevel_id() {
+                return level_id;
+            }
+
+            public void setLevel_id(int level_id) {
+                this.level_id = level_id;
+            }
+
+            public int getSoal_id() {
+                return soal_id;
+            }
+
+            public void setSoal_id(int soal_id) {
+                this.soal_id = soal_id;
+            }
         }
     }
 }
