@@ -59,7 +59,7 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
         holder.cardView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SoalActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("charID", String.valueOf(results.getCharID()));
+            bundle.putString("levelID", String.valueOf(results.getId()));
             intent.putExtras(bundle);
             context.startActivity(intent);
         });

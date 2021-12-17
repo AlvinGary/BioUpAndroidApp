@@ -18,7 +18,8 @@
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".view.LevelView.LevelActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.ProfileView.EditProfileActivity"
             android:exported="true"
@@ -37,7 +38,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.SoalView.SoalActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".view.PreSoalView.PreSoalActivity"
             android:exported="true"
