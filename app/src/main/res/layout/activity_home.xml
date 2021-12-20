@@ -32,7 +32,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/shape_radius_white"
         android:text="Mulai"
@@ -55,25 +55,9 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_profil_home"
         app:layout_constraintEnd_toEndOf="@+id/btn_mulai_home"
         app:layout_constraintStart_toStartOf="@+id/btn_mulai_home"
         app:layout_constraintTop_toBottomOf="@+id/btn_mulai_home" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_profil_home"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/shape_radius_white"
-        android:text="Profil"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_keluar_home"
-        app:layout_constraintEnd_toEndOf="@+id/btn_papan_skor_home"
-        app:layout_constraintStart_toStartOf="@+id/btn_papan_skor_home"
-        app:layout_constraintTop_toBottomOf="@+id/btn_papan_skor_home" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_keluar_home"
@@ -85,8 +69,8 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btn_profil_home"
-        app:layout_constraintStart_toStartOf="@+id/btn_profil_home"
-        app:layout_constraintTop_toBottomOf="@+id/btn_profil_home" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_papan_skor_home"
+        app:layout_constraintStart_toStartOf="@+id/btn_papan_skor_home"
+        app:layout_constraintTop_toBottomOf="@+id/btn_papan_skor_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

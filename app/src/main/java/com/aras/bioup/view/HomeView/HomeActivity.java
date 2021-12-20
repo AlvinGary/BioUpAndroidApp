@@ -30,7 +30,6 @@ public class HomeActivity extends AppCompatActivity {
         btn_keluar_home= findViewById(R.id.btn_keluar_home);
         btn_mulai_home = findViewById(R.id.btn_mulai_home);
         btn_skor_home = findViewById(R.id.btn_papan_skor_home);
-        btn_profil_home = findViewById(R.id.btn_profil_home);
 
         helper = SharedPreferenceHelper.getInstance(this);
         hvm = new ViewModelProvider(this).get(HomeViewModel.class);
