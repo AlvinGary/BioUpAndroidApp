@@ -15,13 +15,12 @@ import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.view.MateriView.PilihMateriActivity;
 import com.aras.bioup.view.PreSoalView.PreSoalActivity;
-import com.aras.bioup.view.SoalView.SoalActivity;
 
 public class GameOverActivity extends AppCompatActivity {
     private ImageView img_icon_game_over;
-    private TextView text_title_game_over, text_semangat_game_over;
+    private TextView text_title_game_over, text_score_game_over,text_score_before_game_over;
     private AppCompatButton btn_coba_lagi_game_over, btn_kembali_game_over;
-    private String levelID, charID, check;
+    private String levelID, charID, check, totalscore;
     private int score;
     private SharedPreferenceHelper helper;
     private GameOverViewModel gameOverViewModel;
@@ -33,17 +32,21 @@ public class GameOverActivity extends AppCompatActivity {
         helper = SharedPreferenceHelper.getInstance(this);
         img_icon_game_over = findViewById(R.id.img_icon_game_over);
         text_title_game_over = findViewById(R.id.text_title_game_over);
-        text_semangat_game_over = findViewById(R.id.text_semangat_game_over);
+        text_score_game_over = findViewById(R.id.text_score_game_over);
         btn_coba_lagi_game_over = findViewById(R.id.btn_coba_lagi_game_over);
         btn_kembali_game_over = findViewById(R.id.btn_kembali_game_over);
+        text_score_before_game_over = findViewById(R.id.text_score_before_game_over);
 
         Bundle bundle = getIntent().getExtras();
         levelID = bundle.getString("levelID");
         charID = bundle.getString("charID");
         check = bundle.getString("check");
         score = bundle.getInt("score");
+        totalscore = bundle.getString("totalscore");
 
-        Toast.makeText(GameOverActivity.this, check, Toast.LENGTH_SHORT).show();
+        text_score_game_over.setText("Score Kamu: " + score);
+        text_score_before_game_over.setText("Score Tertinggi Kamu: " + totalscore);
+
         gameOverViewModel= new ViewModelProvider(GameOverActivity.this).get(GameOverViewModel.class);
         gameOverViewModel.init(helper.getAccessToken());
         gameOverViewModel.uploadscore(levelID,score);
@@ -70,7 +73,7 @@ public class GameOverActivity extends AppCompatActivity {
         }else if (check.equalsIgnoreCase("lolos")){
             img_icon_game_over.setImageResource(R.drawable.check);
             text_title_game_over.setText("Selamat!!!");
-            text_semangat_game_over.setVisibility(View.GONE);
+
             btn_coba_lagi_game_over.setVisibility(View.GONE);
             btn_kembali_game_over.setOnClickListener(view -> {
                 finish();

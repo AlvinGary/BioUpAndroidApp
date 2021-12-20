@@ -34,7 +34,7 @@ public class PreSoalActivity extends AppCompatActivity {
     private SoalViewModel soalViewModel;
     private Button btn_mulai_soal;
     private SharedPreferenceHelper helper;
-    private String levelID, charID;
+    private String levelID, charID,totalscore;
     private int health;
 
     @Override
@@ -64,6 +64,7 @@ public class PreSoalActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         levelID = bundle.getString("levelID");
         charID = bundle.getString("charID");
+        totalscore = bundle.getString("totalscore");
 
         img_back_icon_pre_soal.setOnClickListener(view -> {
             Intent intent = new Intent(this, LevelActivity.class);
@@ -82,6 +83,7 @@ public class PreSoalActivity extends AppCompatActivity {
             bundle2.putString("levelID", levelID);
             bundle2.putInt("health", health);
             bundle2.putString("charID", charID);
+            bundle2.putString("totalscore", totalscore);
             intent.putExtras(bundle2);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -107,7 +109,7 @@ public class PreSoalActivity extends AppCompatActivity {
             if (Integer.parseInt(charID) == allchara.get(i).getId()) {
                 text_chara_pre.setText(allchara.get(i).getNama());
                 Glide.with(PreSoalActivity.this)
-                        .load(Const.IMG_URL + allchara.get(i).getCharimgpath_png())
+                        .load(Const.BASE_URL + allchara.get(i).getCharimgpath_png())
                         .into(img_chara_pre);
                 health = allchara.get(i).getHealthPoint();
                 if (Integer.parseInt(charID) == 1) {

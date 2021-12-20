@@ -79,7 +79,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             }
 
             Glide.with(context)
-                    .load(Const.IMG_URL + results.getCharimgpath_png())
+                    .load(Const.BASE_URL + results.getCharimgpath_png())
                     .into(holder.img_char);
 
             holder.cardView.setOnClickListener(view -> {
@@ -104,7 +104,7 @@ public class PilihMateriAdapter extends RecyclerView.Adapter<PilihMateriAdapter.
             }
 
             Glide.with(context)
-                    .load(Const.IMG_URL + results.getCharimgpath_png())
+                    .load(Const.BASE_URL + results.getCharimgpath_png())
                     .into(holder.img_char);
 
             holder.cardView.setOnClickListener(view -> {

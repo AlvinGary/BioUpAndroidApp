@@ -54,17 +54,18 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelAdapter.CardViewView
         if(position == 2){
             holder.level_name.setText("Susah");
         }
-        if(results.getId() == 16){
+        if(results.getLevel_id() == 16){
             holder.level_name.setText("Ujian Akhir");
         }
 
-        holder.level_score.setText(String.valueOf(results.getPivot().getScore()));
+        holder.level_score.setText(String.valueOf(results.getScore()));
 
         holder.cardView.setOnClickListener(view -> {
             Intent intent = new Intent(context, PreSoalActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString("levelID", String.valueOf(results.getId()));
+            bundle.putString("levelID", String.valueOf(results.getLevel_id()));
             bundle.putString("charID", String.valueOf(results.getCharacter_id()));
+            bundle.putString("totalscore", String.valueOf(results.getScore()));
             intent.putExtras(bundle);
             context.startActivity(intent);
             mActivity = (Activity) holder.cardView.getContext();

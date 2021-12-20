@@ -44,7 +44,7 @@ public class SoalActivity extends AppCompatActivity {
     private SoalViewModel soalViewModel;
     private PilihMateriViewModel charViewModel;
     private SharedPreferenceHelper helper;
-    private String levelID, jawaban, charID;
+    private String levelID, jawaban, charID,totalscore;
     private int nosoal = 0, score = 0, health = 0, soalsize = 0;
     private List<Soal.Soals> allsoal;
 
@@ -99,6 +99,7 @@ public class SoalActivity extends AppCompatActivity {
         levelID = bundle.getString("levelID");
         health = bundle.getInt("health");
         charID = bundle.getString("charID");
+        totalscore = bundle.getString("totalscore");
 
         text_health_player.setText(String.valueOf(health));
         text_no_soal.setText(String.valueOf(nosoal + 1));
@@ -116,11 +117,13 @@ public class SoalActivity extends AppCompatActivity {
                     nosoal++;
                     if (nosoal != soalsize) {
                         showSoals2(nosoal);
+                        text_input_jawaban.getEditText().getText().clear();
                     }else{
                         Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("levelID", levelID);
                         bundle1.putString("charID", charID);
+                        bundle1.putString("totalscore", totalscore);
                         bundle1.putString("check", "lolos");
                         bundle1.putInt("score", score);
                         intent.putExtras(bundle1);
@@ -137,6 +140,7 @@ public class SoalActivity extends AppCompatActivity {
                         Bundle bundle2 = new Bundle();
                         bundle2.putString("levelID", levelID);
                         bundle2.putString("charID", charID);
+                        bundle2.putString("totalscore", totalscore);
                         bundle2.putString("check", "gagal");
                         bundle2.putInt("score", score);
                         intent1.putExtras(bundle2);
@@ -148,11 +152,13 @@ public class SoalActivity extends AppCompatActivity {
                         nosoal++;
                         if (nosoal != soalsize) {
                             showSoals2(nosoal);
+                            text_input_jawaban.getEditText().getText().clear();
                         }else{
                             Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
                             Bundle bundle3 = new Bundle();
                             bundle3.putString("levelID", levelID);
                             bundle3.putString("charID", charID);
+                            bundle3.putString("totalscore", totalscore);
                             bundle3.putString("check", "lolos");
                             bundle3.putInt("score", score);
                             intent.putExtras(bundle3);
@@ -174,7 +180,7 @@ public class SoalActivity extends AppCompatActivity {
         text_isi_soal.setText(allsoal.get(nosoal).getPertanyaan());
         if (allsoal.get(nosoal).getImgpath() != null) {
             Glide.with(SoalActivity.this)
-                    .load(Const.IMG_URL + allsoal.get(nosoal).getImgpath())
+                    .load(Const.BASE_URL + allsoal.get(nosoal).getImgpath())
                     .into(img_soal);
         }
         text_no_soal.setText(String.valueOf(nosoal + 1));
@@ -187,7 +193,7 @@ public class SoalActivity extends AppCompatActivity {
         text_isi_soal.setText(allsoal.get(nosoal).getPertanyaan());
         if (allsoal.get(nosoal).getImgpath() != null) {
             Glide.with(SoalActivity.this)
-                    .load(Const.IMG_URL + allsoal.get(nosoal).getImgpath())
+                    .load(Const.BASE_URL + allsoal.get(nosoal).getImgpath())
                     .into(img_soal);
         }
         jawaban = allsoal.get(nosoal).getJawaban().toString().replaceAll("\\s+", "").trim();

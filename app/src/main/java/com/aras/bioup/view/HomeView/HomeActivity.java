@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
+import com.aras.bioup.view.LeaderboardView.LeaderboardActivity;
 import com.aras.bioup.view.LoginView.LoginActivity;
 import com.aras.bioup.view.MateriView.PilihMateriActivity;
 
@@ -53,6 +54,14 @@ public class HomeActivity extends AppCompatActivity {
             if(view.getId() == R.id.btn_mulai_home){
                 finish();
                 startActivity(new Intent(this, PilihMateriActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
+
+        btn_skor_home.setOnClickListener(view -> {
+            if(view.getId() == R.id.btn_papan_skor_home){
+                finish();
+                startActivity(new Intent(this, LeaderboardActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });

@@ -2,6 +2,7 @@ package com.aras.bioup.retrofit;
 
 import com.aras.bioup.helper.Const;
 import com.aras.bioup.model.Character;
+import com.aras.bioup.model.Leaderboard;
 import com.aras.bioup.model.Level;
 import com.aras.bioup.model.RegisterResponse;
 import com.aras.bioup.model.Soal;
@@ -74,4 +75,6 @@ public class RetrofitService {
     public Call<UpscoreResponse> upscore(String levelID ,int score) {
         return api.upscore(levelID,score);
     }
+
+    public Call<Leaderboard> getLeaderboard(){return api.getLeaderboard(); }
 }

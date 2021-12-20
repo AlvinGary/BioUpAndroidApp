@@ -49,21 +49,22 @@ public class Level implements Parcelable {
     }
 
     public static class Levels {
-        private int id;
+        private int level_id;
         private int character_id;
-        private Pivot pivot;
+        private int user_id;
+        private int score;
 
         public static Levels objectFromData(String str) {
 
             return new Gson().fromJson(str, Levels.class);
         }
 
-        public int getId() {
-            return id;
+        public int getLevel_id() {
+            return level_id;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setLevel_id(int level_id) {
+            this.level_id = level_id;
         }
 
         public int getCharacter_id() {
@@ -74,47 +75,20 @@ public class Level implements Parcelable {
             this.character_id = character_id;
         }
 
-        public Pivot getPivot() {
-            return pivot;
+        public int getUser_id() {
+            return user_id;
         }
 
-        public void setPivot(Pivot pivot) {
-            this.pivot = pivot;
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
         }
 
-        public static class Pivot {
-            private int user_id;
-            private int level_id;
-            private int score;
+        public int getScore() {
+            return score;
+        }
 
-            public static Pivot objectFromData(String str) {
-
-                return new Gson().fromJson(str, Pivot.class);
-            }
-
-            public int getUser_id() {
-                return user_id;
-            }
-
-            public void setUser_id(int user_id) {
-                this.user_id = user_id;
-            }
-
-            public int getLevel_id() {
-                return level_id;
-            }
-
-            public void setLevel_id(int level_id) {
-                this.level_id = level_id;
-            }
-
-            public int getScore() {
-                return score;
-            }
-
-            public void setScore(int score) {
-                this.score = score;
-            }
+        public void setScore(int score) {
+            this.score = score;
         }
     }
 }
