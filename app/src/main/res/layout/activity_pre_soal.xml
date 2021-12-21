@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/img_wave_soal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,10 +63,10 @@
                 android:id="@+id/img_character_pre_soal"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="64dp"
-                android:layout_marginTop="48dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="-16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_nama_karakter_pre_soal"
+                app:layout_constraintStart_toStartOf="@+id/text_nama_karakter_pre_soal"
+                app:layout_constraintTop_toTopOf="@+id/text_nama_karakter_pre_soal"
                 app:srcCompat="@drawable/char1_touki" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -86,9 +87,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview_detail_soal_title_pre_soal"
-                android:layout_width="360dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +144,8 @@
                                 android:layout_marginTop="4dp"
                                 android:text="Jumlah Soal"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -151,9 +155,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="24dp"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="4dp"
                                 android:text="0"
                                 android:textColor="@color/white"
+                                android:textSize="16sp"
                                 app:layout_constraintStart_toStartOf="@+id/text_title_count_questons"
                                 app:layout_constraintTop_toBottomOf="@+id/text_title_count_questons" />
 
@@ -164,6 +169,7 @@
                                 android:layout_marginStart="4dp"
                                 android:text="@string/Soal"
                                 android:textColor="@color/white"
+                                android:textSize="16sp"
                                 app:layout_constraintStart_toEndOf="@+id/text_jumlah_soal_pre_soal"
                                 app:layout_constraintTop_toTopOf="@+id/text_jumlah_soal_pre_soal" />
 
@@ -171,10 +177,11 @@
                                 android:id="@+id/text_title_materi_pre_soal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="64dp"
+                                android:layout_marginTop="16dp"
                                 android:text="Materi"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
+                                android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/text_jumlah_soal_pre_soal" />
@@ -184,11 +191,13 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="4dp"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginBottom="16dp"
                                 android:text="isi materi"
+                                android:textAlignment="center"
                                 android:textColor="@color/white"
+                                android:textSize="16sp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
