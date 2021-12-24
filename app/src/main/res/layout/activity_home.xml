@@ -67,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="70dp"
         android:background="@drawable/shape_radius_red"
         android:text="Keluar"
@@ -77,5 +77,22 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_papan_skor_home"
         app:layout_constraintStart_toStartOf="@+id/btn_papan_skor_home"
         app:layout_constraintTop_toBottomOf="@+id/btn_papan_skor_home" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/shape_radius_white"
+        android:text="Tentang Bio Up!"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/btn_papan_skor_home"
+        app:layout_constraintStart_toStartOf="@+id/btn_papan_skor_home"
+        app:layout_constraintTop_toBottomOf="@+id/btn_papan_skor_home" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

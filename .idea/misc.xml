@@ -21,13 +21,18 @@
         <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_soal.xml" value="0.264" />
         <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Android Studio Project/Sem 3/BioUp/app/src/main/res/layout/cardview_character.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/activity_home.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/activity_level.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/activity_login.xml" value="0.19739583333333333" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/activity_pilih_materi.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/activity_register.xml" value="0.264" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/cardview_character.xml" value="0.27447916666666666" />
-        <entry key="..\:/Android Studio Project/Sem 3/BioUpAndroidApp/app/src/main/res/layout/cardview_level.xml" value="0.264" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/drawable/shape_radius_white.xml" value="0.2526041666666667" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_about_us.xml" value="0.264" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_game_over.xml" value="0.2484375" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_home.xml" value="0.23645833333333333" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_leaderboard.xml" value="0.2484375" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_level.xml" value="0.2484375" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_login.xml" value="0.22083333333333333" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_pilih_materi.xml" value="0.22083333333333333" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_profile.xml" value="0.22083333333333333" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/activity_soal.xml" value="0.22083333333333333" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/custom_dialog.xml" value="0.2484375" />
+        <entry key="..\:/Android_Source/BioUpAndroidApp/app/src/main/res/layout/wrong_custom_dialog.xml" value="0.2484375" />
         <entry key="..\:/Users/Kirihara_Ichijou/AndroidStudioProjects/BioUpAndroidApp/app/src/main/res/drawable/bg_color.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Kirihara_Ichijou/AndroidStudioProjects/BioUpAndroidApp/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/Kirihara_Ichijou/AndroidStudioProjects/BioUpAndroidApp/app/src/main/res/layout/activity_profile.xml" value="0.20260416666666667" />

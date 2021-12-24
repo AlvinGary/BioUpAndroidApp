@@ -66,7 +66,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         if (user == results.getUser_id()) {
             holder.rank.setText(String.valueOf(position + 1));
             holder.cardView.setCardBackgroundColor(Color.GREEN);
-            holder.username.setText(allusers.get(user-1).getUsername());
+            holder.username.setText(allusers.get(position).getUsername());
             holder.totalscore.setText(String.valueOf(results.getTotalscore()));
         } else {
             holder.rank.setText(String.valueOf(position + 1));

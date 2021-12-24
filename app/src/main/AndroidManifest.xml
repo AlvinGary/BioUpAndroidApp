@@ -11,15 +11,18 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/logobunder"
         android:supportsRtl="true"
         android:theme="@style/Theme.BioUp"
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true">
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".about_us"
+            android:exported="false" />
         <activity
             android:name=".view.LevelView.LevelActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.ProfileView.EditProfileActivity"
             android:exported="true"
@@ -39,7 +42,7 @@
         <activity
             android:name=".view.SoalView.SoalActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.PreSoalView.PreSoalActivity"
             android:exported="true"

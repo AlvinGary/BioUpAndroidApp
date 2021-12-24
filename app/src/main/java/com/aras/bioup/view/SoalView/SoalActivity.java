@@ -6,8 +6,10 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,24 +20,19 @@ import android.widget.Toast;
 import com.aras.bioup.R;
 import com.aras.bioup.helper.Const;
 import com.aras.bioup.helper.SharedPreferenceHelper;
-import com.aras.bioup.model.Character;
 import com.aras.bioup.model.Soal;
 import com.aras.bioup.view.GameOverView.GameOverActivity;
-import com.aras.bioup.view.LoginView.LoginActivity;
 import com.aras.bioup.view.MateriView.PilihMateriActivity;
 import com.aras.bioup.view.MateriView.PilihMateriViewModel;
-import com.aras.bioup.view.PreSoalView.PreSoalActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class SoalActivity extends AppCompatActivity {
 
     private TextView text_no_soal, text_isi_soal, text_health_player;
+    private Dialog dialog;
     private TextInputLayout text_input_jawaban;
     private ImageView img_soal;
     private AppCompatButton btn_exit_pre_soal;
@@ -81,6 +78,7 @@ public class SoalActivity extends AppCompatActivity {
         img_soal = findViewById(R.id.img_soal);
         btn_submit_jawaban = findViewById(R.id.btn_submit_jawab_soal);
         btn_exit_pre_soal = findViewById(R.id.btn_exit_pre_soal);
+        dialog = new Dialog(this);
 
         btn_exit_pre_soal.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(SoalActivity.this);
@@ -113,6 +111,7 @@ public class SoalActivity extends AppCompatActivity {
             String jawabanuser = text_input_jawaban.getEditText().getText().toString().replaceAll("\\s+", "").trim();
             if (jawabanuser != null) {
                 if (jawaban.equalsIgnoreCase(jawabanuser)) {
+                    openDialog2();
                     score += 5;
                     nosoal++;
                     if (nosoal != soalsize) {
@@ -133,6 +132,7 @@ public class SoalActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     }
                 } else {
+                    openDialog();
                     health -= 1;
                     text_health_player.setText(String.valueOf(health));
                     if (health == 0) {
@@ -198,4 +198,37 @@ public class SoalActivity extends AppCompatActivity {
         }
         jawaban = allsoal.get(nosoal).getJawaban().toString().replaceAll("\\s+", "").trim();
     };
+
+    private void openDialog(){
+        dialog.setContentView(R.layout.custom_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+        Button btnok = dialog.findViewById(R.id.btn_dialog2);
+        TextView txt_jawaban = dialog.findViewById(R.id.txt_jawaban);
+        txt_jawaban.setText(allsoal.get(nosoal).getJawaban().trim());
+        btnok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Toast.makeText(SoalActivity.this, "Health -1", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
+
+    }
+    private void openDialog2(){
+        dialog.setContentView(R.layout.custom_dialog2);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button btnok2 = dialog.findViewById(R.id.btn_dialog2);
+        btnok2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Toast.makeText(SoalActivity.this, "Score +5", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
+    }
 }
