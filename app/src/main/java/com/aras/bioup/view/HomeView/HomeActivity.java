@@ -24,45 +24,32 @@ import com.aras.bioup.view.LoginView.LoginActivity;
 import com.aras.bioup.view.MateriView.PilihMateriActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    private Button btn_keluar_home, btn_mulai_home, btn_skor_home, btn_profil_home, btn_about;
+    private Button btn_keluar_home, btn_mulai_home, btn_skor_home, btn_about;
     private SharedPreferenceHelper helper;
     private HomeViewModel hvm;
-    private Boolean doubleBackToExitPressedOnce=false;
+    private Boolean doubleBackToExitPressedOnce = false;
     private int count = 0;
-     MediaPlayer player;
+    private MediaPlayer player;
+
+    @Override
+    protected void onPause() {
+        player.reset();
+        player.release();
+        player = null;
+        super.onPause();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         player = MediaPlayer.create(HomeActivity.this, R.raw.harvest);
-
-        AudioManager am =
-                (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setStreamVolume(
-                AudioManager.STREAM_MUSIC,
-                am.getStreamVolume(AudioManager.STREAM_MUSIC),
-                0);
-        if(player.isPlaying()){
-                Toast.makeText(getBaseContext(), "masuk if",
-                        Toast.LENGTH_LONG).show();
-                player.stop();
-                player.reset();
-                player.release();
-        }
-        else if(!player.isPlaying()){
-            player.start();
-            player.setLooping(true);
-            Toast.makeText(getBaseContext(), "masuk else",
-                    Toast.LENGTH_LONG).show();
-
-
-        }
-
-
-
-
-        btn_keluar_home= findViewById(R.id.btn_keluar_home);
+        player.start();
+        player.setLooping(true);
+        Toast.makeText(getBaseContext(), "masuk else",
+                Toast.LENGTH_LONG).show();
+        btn_keluar_home = findViewById(R.id.btn_keluar_home);
         btn_mulai_home = findViewById(R.id.btn_mulai_home);
         btn_skor_home = findViewById(R.id.btn_papan_skor_home);
         btn_about = findViewById(R.id.btn_about);
@@ -70,13 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         helper = SharedPreferenceHelper.getInstance(this);
         hvm = new ViewModelProvider(this).get(HomeViewModel.class);
         hvm.init(helper.getAccessToken());
-
-
-
-
-
-
-
 
         btn_about.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,9 +69,9 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btn_keluar_home.setOnClickListener(view -> {
-            if (view.getId() == R.id.btn_keluar_home){
+            if (view.getId() == R.id.btn_keluar_home) {
                 hvm.logout().observe(this, s -> {
-                    if (!s.isEmpty()){
+                    if (!s.isEmpty()) {
                         helper.clearPref();
                         finish();
                         startActivity(new Intent(this, LoginActivity.class));
@@ -103,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btn_mulai_home.setOnClickListener(view -> {
-            if(view.getId() == R.id.btn_mulai_home){
+            if (view.getId() == R.id.btn_mulai_home) {
                 finish();
                 startActivity(new Intent(this, PilihMateriActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -111,13 +91,14 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         btn_skor_home.setOnClickListener(view -> {
-            if(view.getId() == R.id.btn_papan_skor_home){
+            if (view.getId() == R.id.btn_papan_skor_home) {
                 finish();
                 startActivity(new Intent(this, LeaderboardActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
