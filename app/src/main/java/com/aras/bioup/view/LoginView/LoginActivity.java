@@ -58,14 +58,14 @@ public class LoginActivity extends AppCompatActivity {
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                             Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
                         }else{
-                            Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_LONG).show();
                         }
                     }else{
-                        Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_LONG).show();
                     }
                 });
             }else{
-                Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Klik tombol kembali sekali lagi untuk keluar dari aplikasi", Toast.LENGTH_SHORT).show();
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 

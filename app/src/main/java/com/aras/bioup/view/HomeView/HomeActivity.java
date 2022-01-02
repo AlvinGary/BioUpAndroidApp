@@ -47,8 +47,7 @@ public class HomeActivity extends AppCompatActivity {
         player = MediaPlayer.create(HomeActivity.this, R.raw.harvest);
         player.start();
         player.setLooping(true);
-        Toast.makeText(getBaseContext(), "masuk else",
-                Toast.LENGTH_LONG).show();
+
         btn_keluar_home = findViewById(R.id.btn_keluar_home);
         btn_mulai_home = findViewById(R.id.btn_mulai_home);
         btn_skor_home = findViewById(R.id.btn_papan_skor_home);
@@ -107,7 +106,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Klik tombol kembali sekali lagi untuk keluar dari aplikasi", Toast.LENGTH_SHORT).show();
 
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 

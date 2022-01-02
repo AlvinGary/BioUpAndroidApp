@@ -64,35 +64,25 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboards().get(position);
-//        if (user == results.getUser_id()) {
-//            holder.rank.setText(String.valueOf(position + 1));
-//            holder.cardView.setCardBackgroundColor(Color.GREEN);
-//            holder.username.setText(allusers.get(user-1).getUsername());
-//            holder.totalscore.setText(String.valueOf(results.getTotalscore()));
-//        } else {
-            if(position == 0){
-                holder.img_rank.setImageResource(R.drawable.gold_medak);
-            }
-            else if(position == 1){
-                holder.img_rank.setImageResource(R.drawable.silver_medak);
-            }
-            else if(position == 2){
-                holder.img_rank.setImageResource(R.drawable.bronze_medak);
-            }
-            holder.rank.setText(String.valueOf(position + 1));
-            if (user == results.getUser_id()) {
-                holder.cardView.setCardBackgroundColor(Color.GREEN);
+        if (position == 0) {
+            holder.img_rank.setImageResource(R.drawable.gold_medak);
+        } else if (position == 1) {
+            holder.img_rank.setImageResource(R.drawable.silver_medak);
+        } else if (position == 2) {
+            holder.img_rank.setImageResource(R.drawable.bronze_medak);
+        }
+        holder.rank.setText(String.valueOf(position + 1));
+        if (user == results.getUser_id()) {
+            holder.cardView.setCardBackgroundColor(Color.GREEN);
 
+        }
+
+        for (int i = 0; 1 < allusers.size(); i++) {
+            if (results.getUser_id() == allusers.get(i).getId()) {
+                holder.username.setText(allusers.get(i).getUsername());
+                holder.totalscore.setText(String.valueOf(results.getTotalscore()));
+                break;
             }
-
-            for (int i = 0; 1 < allusers.size(); i++) {
-                if (results.getUser_id() == allusers.get(i).getId()) {
-                    holder.username.setText(allusers.get(i).getUsername());
-                    holder.totalscore.setText(String.valueOf(results.getTotalscore()));
-                    break;
-                }
-
-
         }
     }
 
