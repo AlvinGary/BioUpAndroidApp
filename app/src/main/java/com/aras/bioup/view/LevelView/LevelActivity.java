@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
@@ -54,14 +57,19 @@ public class LevelActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         charID = bundle.getString("charID");
-
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
         recyclerView = findViewById(R.id.rv_level);
         helper = SharedPreferenceHelper.getInstance(LevelActivity.this);
         levelViewModel = new ViewModelProvider(LevelActivity.this).get(LevelViewModel.class);
         levelViewModel.init(helper.getAccessToken());
         levelViewModel.getLevels(charID);
         levelViewModel.getResultLevels().observe(LevelActivity.this, showLevels);
-
+        }else{
+            Toast.makeText(this, "Pastikan kamu terhubung ke jaringan internet.", Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        }
     }
 
     List<Level.Levels> results = new ArrayList<>();

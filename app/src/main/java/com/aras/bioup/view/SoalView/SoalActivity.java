@@ -41,7 +41,7 @@ public class SoalActivity extends AppCompatActivity {
     private SoalViewModel soalViewModel;
     private PilihMateriViewModel charViewModel;
     private SharedPreferenceHelper helper;
-    private String levelID, jawaban, charID, totalscore;
+    private String jawaban;
     private int nosoal = 0, score = 0, health = 0, soalsize = 0;
     private List<Soal.Soals> allsoal;
 
@@ -93,11 +93,11 @@ public class SoalActivity extends AppCompatActivity {
                     })).show();
         });
 
-        Bundle bundle = getIntent().getExtras();
-        levelID = bundle.getString("levelID");
-        health = bundle.getInt("health");
-        charID = bundle.getString("charID");
-        totalscore = bundle.getString("totalscore");
+        Bundle bundle1 = getIntent().getExtras();
+        final String levelID = bundle1.getString("levelID");
+        health = bundle1.getInt("health");
+        final String charID = bundle1.getString("charID");
+        final String totalscore = bundle1.getString("totalscore");
 
         text_health_player.setText(String.valueOf(health));
         text_no_soal.setText(String.valueOf(nosoal + 1));
@@ -122,13 +122,13 @@ public class SoalActivity extends AppCompatActivity {
                         text_input_jawaban.getEditText().getText().clear();
                     } else {
                         Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putString("levelID", levelID);
-                        bundle1.putString("charID", charID);
-                        bundle1.putString("totalscore", totalscore);
-                        bundle1.putString("check", "lolos");
-                        bundle1.putInt("score", score);
-                        intent.putExtras(bundle1);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("levelID", levelID);
+                        bundle.putString("charID", charID);
+                        bundle.putString("totalscore", totalscore);
+                        bundle.putString("check", "lolos");
+                        bundle.putInt("score", score);
+                        intent.putExtras(bundle);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();
@@ -140,13 +140,13 @@ public class SoalActivity extends AppCompatActivity {
                     text_health_player.setText(String.valueOf(health));
                     if (health == 0) {
                         Intent intent1 = new Intent(SoalActivity.this, GameOverActivity.class);
-                        Bundle bundle2 = new Bundle();
-                        bundle2.putString("levelID", levelID);
-                        bundle2.putString("charID", charID);
-                        bundle2.putString("totalscore", totalscore);
-                        bundle2.putString("check", "gagal");
-                        bundle2.putInt("score", score);
-                        intent1.putExtras(bundle2);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("levelID", levelID);
+                        bundle.putString("charID", charID);
+                        bundle.putString("totalscore", totalscore);
+                        bundle.putString("check", "gagal");
+                        bundle.putInt("score", score);
+                        intent1.putExtras(bundle);
                         intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent1);
                         finish();
@@ -158,13 +158,13 @@ public class SoalActivity extends AppCompatActivity {
                             text_input_jawaban.getEditText().getText().clear();
                         } else {
                             Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
-                            Bundle bundle3 = new Bundle();
-                            bundle3.putString("levelID", levelID);
-                            bundle3.putString("charID", charID);
-                            bundle3.putString("totalscore", totalscore);
-                            bundle3.putString("check", "lolos");
-                            bundle3.putInt("score", score);
-                            intent.putExtras(bundle3);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("levelID", levelID);
+                            bundle.putString("charID", charID);
+                            bundle.putString("totalscore", totalscore);
+                            bundle.putString("check", "lolos");
+                            bundle.putInt("score", score);
+                            intent.putExtras(bundle);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();

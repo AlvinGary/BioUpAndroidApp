@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
@@ -51,12 +54,19 @@ public class LeaderboardActivity extends AppCompatActivity {
         });
         dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
         dialog.show();
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
         recyclerView = findViewById(R.id.rv_leaderboard);
         helper=SharedPreferenceHelper.getInstance(this);
         leaderboardViewModel = new ViewModelProvider(this).get(LeaderboardViewModel.class);
         leaderboardViewModel.init(helper.getAccessToken());
         leaderboardViewModel.getLeaderboard();
         leaderboardViewModel.getResultLeaderboard().observe(this, showLeaderboard);
+        } else {
+            Toast.makeText(this, "Pastikan kamu terhubung ke jaringan internet.", Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        }
     }
 
     private List<Leaderboard.Allusers> results = new ArrayList<>();

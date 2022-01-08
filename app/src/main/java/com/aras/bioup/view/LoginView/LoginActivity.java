@@ -3,7 +3,10 @@ package com.aras.bioup.view.LoginView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login_login;
     private LoginViewModel lvm;
     private SharedPreferenceHelper helper;
+    private ProgressDialog dialog;
     private boolean doubleBackToExitPressedOnce = false;
 
     @Override
@@ -45,27 +49,36 @@ public class LoginActivity extends AppCompatActivity {
         helper = SharedPreferenceHelper.getInstance(this);
         lvm = new ViewModelProvider(this).get(LoginViewModel.class);
         btn_login_login.setOnClickListener(view -> {
-            if (!text_input_username_login.getEditText().getText().toString().isEmpty() &&
-                    !text_input_password_login.getEditText().getText().toString().isEmpty()) {
-                String email = text_input_username_login.getEditText().getText().toString().trim();
-                String password = text_input_password_login.getEditText().getText().toString().trim();
-                lvm.login(email,password).observe(LoginActivity.this, tokenResponse -> {
-                    if (tokenResponse!=null){
-                        if(tokenResponse.getAccess_token()!=null){
-                            helper.saveAccessToken(tokenResponse.getAuthorization());
-                            finish();
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_LONG).show();
+            dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
+            dialog.show();
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+            if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                    connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+                if (!text_input_username_login.getEditText().getText().toString().isEmpty() &&
+                        !text_input_password_login.getEditText().getText().toString().isEmpty()) {
+                    String email = text_input_username_login.getEditText().getText().toString().trim();
+                    String password = text_input_password_login.getEditText().getText().toString().trim();
+                    lvm.login(email, password).observe(LoginActivity.this, tokenResponse -> {
+                        if (tokenResponse != null) {
+                            if (tokenResponse.getAccess_token() != null) {
+                                helper.saveAccessToken(tokenResponse.getAuthorization());
+                                finish();
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_LONG).show();
                         }
-                    }else{
-                        Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_LONG).show();
-                    }
-                });
-            }else{
-                Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                    });
+                } else {
+                    Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, "Pastikan kamu terhubung ke jaringan internet.", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
         });
     }
