@@ -41,7 +41,7 @@ public class SoalActivity extends AppCompatActivity {
     private SoalViewModel soalViewModel;
     private PilihMateriViewModel charViewModel;
     private SharedPreferenceHelper helper;
-    private String levelID, jawaban, charID,totalscore;
+    private String levelID, jawaban, charID, totalscore;
     private int nosoal = 0, score = 0, health = 0, soalsize = 0;
     private List<Soal.Soals> allsoal;
 
@@ -107,9 +107,12 @@ public class SoalActivity extends AppCompatActivity {
         soalViewModel.init(helper.getAccessToken());
         soalViewModel.getSoals(levelID);
         soalViewModel.getResultSoals().observe(SoalActivity.this, showSoals);
+
         btn_submit_jawaban.setOnClickListener(view -> {
-            String jawabanuser = text_input_jawaban.getEditText().getText().toString().replaceAll("\\s+", "").trim();
-            if (jawabanuser != null) {
+            String jawabanuser = text_input_jawaban.getEditText().getText().toString().replaceAll("\\s+", "");
+            if (jawabanuser.equalsIgnoreCase("")) {
+                Toast.makeText(SoalActivity.this, "Jawaban tidak boleh kosong!", Toast.LENGTH_SHORT).show();
+            } else {
                 if (jawaban.equalsIgnoreCase(jawabanuser)) {
                     openDialog2();
                     score += 5;
@@ -117,7 +120,7 @@ public class SoalActivity extends AppCompatActivity {
                     if (nosoal != soalsize) {
                         showSoals2(nosoal);
                         text_input_jawaban.getEditText().getText().clear();
-                    }else{
+                    } else {
                         Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
                         Bundle bundle1 = new Bundle();
                         bundle1.putString("levelID", levelID);
@@ -153,7 +156,7 @@ public class SoalActivity extends AppCompatActivity {
                         if (nosoal != soalsize) {
                             showSoals2(nosoal);
                             text_input_jawaban.getEditText().getText().clear();
-                        }else{
+                        } else {
                             Intent intent = new Intent(SoalActivity.this, GameOverActivity.class);
                             Bundle bundle3 = new Bundle();
                             bundle3.putString("levelID", levelID);
@@ -169,11 +172,8 @@ public class SoalActivity extends AppCompatActivity {
                         }
                     }
                 }
-            } else {
-                Toast.makeText(SoalActivity.this, "Jawaban tidak boleh kosong!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void showSoals2(int nosoal) {
@@ -199,7 +199,7 @@ public class SoalActivity extends AppCompatActivity {
         jawaban = allsoal.get(nosoal).getJawaban().toString().replaceAll("\\s+", "").trim();
     };
 
-    private void openDialog(){
+    private void openDialog() {
         dialog.setContentView(R.layout.custom_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
@@ -217,7 +217,8 @@ public class SoalActivity extends AppCompatActivity {
         dialog.show();
 
     }
-    private void openDialog2(){
+
+    private void openDialog2() {
         dialog.setContentView(R.layout.custom_dialog2);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
