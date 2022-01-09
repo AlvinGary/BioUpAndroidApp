@@ -8,12 +8,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +18,6 @@ import android.widget.Toast;
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.view.HomeView.HomeActivity;
-import com.aras.bioup.view.RegisterView.RegisterActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -43,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         text_input_password_login = findViewById(R.id.text_input_password_login);
         btn_login_login = findViewById(R.id.btn_login_login);
         text_register_login.setOnClickListener(view -> {
-            startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://www.google.com")));
+            startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://bioup.my.id/register")));
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
         helper = SharedPreferenceHelper.getInstance(this);
