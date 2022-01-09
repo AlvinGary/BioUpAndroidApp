@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +37,7 @@ public class PreSoalActivity extends AppCompatActivity {
     private SoalViewModel soalViewModel;
     private Button btn_mulai_soal;
     private SharedPreferenceHelper helper;
+    private ProgressDialog dialog;
     private String levelID, charID,totalscore;
     private int health;
 
@@ -54,6 +58,8 @@ public class PreSoalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_soal);
+        dialog = ProgressDialog.show(this, "", "Loading. Please wait...", true);
+        dialog.show();
         text_chara_pre = findViewById(R.id.text_nama_karakter_pre_soal);
         text_jumlah_soal = findViewById(R.id.text_jumlah_soal_pre_soal);
         text_isi_materi = findViewById(R.id.text_isi_materi_pre_soal);
@@ -90,16 +96,22 @@ public class PreSoalActivity extends AppCompatActivity {
             finish();
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
-
-        helper = SharedPreferenceHelper.getInstance(this);
-        charViewModel = new ViewModelProvider(this).get(PilihMateriViewModel.class);
-        charViewModel.init(helper.getAccessToken());
-        charViewModel.getCharacters();
-        charViewModel.getResultCharacters().observe(this, showCharacters);
-        soalViewModel = new ViewModelProvider(this).get(SoalViewModel.class);
-        soalViewModel.init(helper.getAccessToken());
-        soalViewModel.getSoals(levelID);
-        soalViewModel.getResultSoals().observe(this, jumlahSoal);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            helper = SharedPreferenceHelper.getInstance(this);
+            charViewModel = new ViewModelProvider(this).get(PilihMateriViewModel.class);
+            charViewModel.init(helper.getAccessToken());
+            charViewModel.getCharacters();
+            charViewModel.getResultCharacters().observe(this, showCharacters);
+            soalViewModel = new ViewModelProvider(this).get(SoalViewModel.class);
+            soalViewModel.init(helper.getAccessToken());
+            soalViewModel.getSoals(levelID);
+            soalViewModel.getResultSoals().observe(this, jumlahSoal);
+        }else {
+            Toast.makeText(this, "Pastikan kamu terhubung ke jaringan internet.", Toast.LENGTH_LONG).show();
+            dialog.dismiss();
+        }
     }
 
     private List<Character.Allchara> allchara;
@@ -133,6 +145,8 @@ public class PreSoalActivity extends AppCompatActivity {
     private Observer<Soal> jumlahSoal = soal -> {
         allsoal = soal.getSoals();
         text_jumlah_soal.setText(String.valueOf(allsoal.size()));
-
+        if (allsoal != null) {
+            dialog.dismiss();
+        }
     };
 }
