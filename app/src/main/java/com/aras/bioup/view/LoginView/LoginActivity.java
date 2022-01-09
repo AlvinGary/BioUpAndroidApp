@@ -68,13 +68,16 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Berhasil Masuk!", Toast.LENGTH_SHORT).show();
                             } else {
                                 Snackbar.make(view, tokenResponse.getMessage(), Snackbar.LENGTH_LONG).show();
+                                dialog.dismiss();
                             }
                         } else {
                             Snackbar.make(view, "Ups, ada gangguan saat melakukan login. Silakan coba lagi", Snackbar.LENGTH_LONG).show();
+                            dialog.dismiss();
                         }
                     });
                 } else {
                     Snackbar.make(view, "Tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }
             } else {
                 Toast.makeText(this, "Pastikan kamu terhubung ke jaringan internet.", Toast.LENGTH_LONG).show();
