@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.aras.bioup.R;
 import com.aras.bioup.helper.SharedPreferenceHelper;
 import com.aras.bioup.view.HomeView.HomeActivity;
-import com.aras.bioup.view.RegisterView.RegisterActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
